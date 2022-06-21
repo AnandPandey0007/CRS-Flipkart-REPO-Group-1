@@ -8,17 +8,17 @@ import java.util.List;
 
 public interface StudentInterface {
     public int register(String name, String userID, String password, Gender gender, int batch, String branch, String address, String country);
-    public int getStudentId(String userId);
-    public boolean isApproved(int studentId);
-    public boolean addCourse(String courseCode, int studentId, List<Course> studentCourseList);
+    public String getStudentId(String userId);
+    public boolean isApproved(String studentId);
+    public boolean addCourse(String courseCode, List<Course> studentCourseList);
 
-    public boolean dropCourse(String courseCode, int studentId, List<Course> studentCourseList);
+    public boolean dropCourse(String courseCode, String studentId, List<Course> studentCourseList);
 
-    public List<Course> viewCourses(int studentId);
+    public List<Course> viewCourses(String studentId);
 
-    public void setRegistrationStatus(int studentId);
+    public void setRegistrationStatus(String studentId);
 
-    public boolean getRegistrationStatus(int studentId);
+    public boolean getRegistrationStatus(String studentId);
 
     public List<Grade> viewGradeCard(int studentId);
 }
