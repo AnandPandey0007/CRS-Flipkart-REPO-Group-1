@@ -5,7 +5,32 @@ import java.util.Scanner;
 public class AdminCRSMenu {
     Scanner scanner=new Scanner(System.in);
     //Display the options available for the Admin
+
     public void showAdminMenu(String adminId) {
+        showChoices();
+        System.out.println("Enter user input: ");
+        int choice= scanner.nextInt();
+        switch(choice){
+            case 1: showCourses();
+                    break;
+            case 2: addCourse();
+                    break;
+            case 3: deleteCourse();
+                    break;
+            case 4: approveStudent();
+                    break;
+            case 5: viewPendingStudentApproval();
+                    break;
+            case 6: addProfessor();
+                    break;
+            case 7: assignCourse();
+                    break;
+            case 8: logout();
+                    break;
+        }
+    }
+
+    public void showChoices(){
         System.out.println("*****************************");
         System.out.println("**********Admin Menu*********");
         System.out.println("*****************************");
@@ -18,13 +43,32 @@ public class AdminCRSMenu {
         System.out.println("7. Assign Courses To Professor");
         System.out.println("8. Logout");
         System.out.println("*****************************");
-        System.out.println("Enter user input: ");
-        int choice= scanner.nextInt();
-        switch(choice){
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-        }
+    }
+
+    public void showCourses(){
+        System.out.println("Show Course Catalog");
+    }
+
+    public void addCourse(){
+        System.out.println("Adding Course");
+    }
+    public void deleteCourse(){
+        System.out.println("Deleting course");
+    }
+    public void approveStudent(){
+        System.out.println("Approve student");
+    }
+    public void viewPendingStudentApproval(){
+        System.out.println("View Pending Student Approval");
+    }
+    public void addProfessor(){
+        System.out.println("Adding Professor");
+    }
+    public void assignCourse(){
+        System.out.println("Assign Courses");
+    }
+
+    public void logout(){
+        System.out.println("Logging you out...");
     }
 }
