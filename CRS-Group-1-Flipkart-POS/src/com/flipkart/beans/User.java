@@ -3,12 +3,13 @@ import com.flipkart.constant.*;
 
 public abstract class User {
     private String userId;
-    private String password;
     private String name;
     private Role role;
     private Gender gender;
+    private String password;
     private String address;
     private String country;
+
 
     public String getUserId() {
         return userId;
@@ -66,3 +67,5 @@ public abstract class User {
         this.country = country;
     }
 }
+
+//

@@ -5,7 +5,6 @@ import com.flipkart.beans.*;
 import java.util.List;
 
 public interface AdminInterface {
-
     public void assignCourse(String courseCode, String professorId);
     public void addCourse(Course course, List<Course> courseList);
     public void deleteCourse(String courseCode, List<Course> courseList);

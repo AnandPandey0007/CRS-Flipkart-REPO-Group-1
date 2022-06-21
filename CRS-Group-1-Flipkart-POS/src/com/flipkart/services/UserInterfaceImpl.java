@@ -6,4 +6,6 @@ public class UserInterfaceImpl implements UserInterface{
     public String getRole(String userId) {
         return null;
     }
+
+    //need to take care of login and logout
 }
