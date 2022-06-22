@@ -6,8 +6,13 @@ import java.util.UUID;
 
 public class NotificationInterfaceImpl implements NotificationInterface{
     @Override
-    public int sendNotification(NotificationType type, int studentId, ModeOfPayment modeOfPayment, double amount) {
-        return 0;
+    public void sendNotification(NotificationType type, int studentId, ModeOfPayment modeOfPayment, double amount) {
+        if(type.equals("payment")){
+            System.out.println(studentId + " has paid " + amount + " by" + modeOfPayment);
+        }
+        else {
+            System.out.println("Error Occurred");
+        }
     }
 
     @Override

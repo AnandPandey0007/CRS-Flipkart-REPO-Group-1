@@ -1,5 +1,7 @@
 package com.flipkart.beans;
 
+import java.util.List;
+
 public class Student {
 
     private String studentId;
@@ -9,6 +11,20 @@ public class Student {
     private String password;
 
     private boolean isApproved;
+
+    private List<Course> courseList;
+
+    public List<Course> getCourses() {
+        return courseList;
+    }
+
+    public void addCourses(Course course) {
+        courseList.add(course);
+    }
+
+    public void removeCourses(Course course){
+        courseList.remove(course);
+    }
 
     public String getStudentId() {
         return studentId;

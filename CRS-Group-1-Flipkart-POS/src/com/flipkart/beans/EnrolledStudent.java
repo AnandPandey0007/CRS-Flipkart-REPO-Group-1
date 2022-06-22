@@ -5,6 +5,12 @@ public class EnrolledStudent {
     private String courseName;
     private int studentId;
 
+    public EnrolledStudent(String courseCode, String courseName, int studentId) {
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+        this.studentId = studentId;
+    }
+
     public String getCourseCode() {
         return courseCode;
     }

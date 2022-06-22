@@ -2,6 +2,14 @@ package com.flipkart.beans;
 
 public class Course {
     private String courseCode;
+
+    public Course(String courseCode, String courseName, String instructorId, int seats) {
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+        this.instructorId = instructorId;
+        this.seats = seats;
+    }
+
     private String courseName;
     private String instructorId;
     private int seats;

@@ -2,6 +2,7 @@ package com.flipkart.application;
 
 import com.flipkart.beans.Professor;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -13,13 +14,13 @@ public class CRSApplication {
 
     static String userId;
 
-    public static void main(String args[]){
+    public static void main(String args[]) throws IOException {
         System.out.println("CRS-Application is running");
         hardCodeData();
         showMainMenu();
     }
 
-    public static void showMainMenu(){
+    public static void showMainMenu() throws IOException {
         Scanner scanner=new Scanner(System.in);
         System.out.println("----------Welcome to Course Management System---------");
         System.out.println("1. Login");
@@ -40,14 +41,13 @@ public class CRSApplication {
         }
     }
 
-    public static void login(){
+    public static void login() throws IOException {
         System.out.println("Welcome to login page...");
         System.out.println("Enter S for Student");
         System.out.println("Enter P for Professor");
         System.out.println("Enter A for Admin");
         char role=scanner.next().charAt(0);
         switch (role){
-
             case 'S':
                 if(checkCredentials(studentCredentials)) {
                     StudentCRSMenu studentCRSMenu = new StudentCRSMenu();
