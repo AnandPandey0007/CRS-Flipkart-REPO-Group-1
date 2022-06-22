@@ -1,6 +1,8 @@
 package com.flipkart.services;
 
+import com.flipkart.beans.Course;
 import com.flipkart.beans.EnrolledStudent;
+import com.flipkart.dao.ProfessorDaoInterfaceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,20 +15,42 @@ public class ProfessorInterfaceImpl implements ProfessorInterface {
     }
 
     @Override
-    public List<EnrolledStudent> viewEnrolledStudents(String profId) {
-        List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
-        EnrolledStudent st1= new EnrolledStudent("1","C1",1);
-        enrolledStudents.add(st1);
-        EnrolledStudent st2= new EnrolledStudent("1","C1",2);
-        enrolledStudents.add(st2);
-        EnrolledStudent st3= new EnrolledStudent("1","C1",2);
-        enrolledStudents.add(st3);
-        return enrolledStudents;
+    public List<EnrolledStudent> viewEnrolledStudents(String courseId, String profId) {
+        List<EnrolledStudent> studentList=null;
+        try{
+            ProfessorDaoInterfaceImpl p = new ProfessorDaoInterfaceImpl();
+            studentList= p.getEnrolledStudents(courseId, profId);
+        }
+        catch(Exception e) {
+            System.out.println("Error finding enrolled students !!!");
+        }
+        return studentList;
     }
 
     @Override
-    public boolean addGrade(int studentId, String courseCode, String grade) {
-            System.out.println("The grade of the studentId : " +studentId+" has been updated to "+grade);
-            return true;
+    public boolean addGrade(String studentId, String courseId, String grade) {
+        List<EnrolledStudent> studentList=null;
+        try{
+            ProfessorDaoInterfaceImpl p = new ProfessorDaoInterfaceImpl();
+            p.addGrade(studentId, courseId, grade);
+        }
+        catch(Exception e) {
+            System.out.println("Error adding grade !!!");
+        }
+        return true;
+
+    }
+
+    @Override
+    public List<Course> getCourses(String profId) {
+        // TODO Auto-generated method stub
+        try{
+            ProfessorDaoInterfaceImpl p = new ProfessorDaoInterfaceImpl();
+            return p.getCourses(profId);
+        }
+        catch(Exception e) {
+            //throw new CourseNotFoundException(courseId);
+        }
+        return null;
     }
 }

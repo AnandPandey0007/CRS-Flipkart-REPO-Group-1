@@ -16,8 +16,8 @@ public class CRSApplication {
 
     public static void main(String args[]) throws IOException {
         System.out.println("CRS-Application is running");
-        hardCodeData();
-        showMainMenu();
+      //  hardCodeData();
+      //  showMainMenu();
     }
 
     public static void showMainMenu() throws IOException {
