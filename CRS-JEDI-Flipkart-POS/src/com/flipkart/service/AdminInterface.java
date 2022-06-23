@@ -15,8 +15,7 @@ import com.flipkart.exception.UserIdAlreadyInUseException;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
- * 
- * @author JEDI-03
+ *
  * Interface for Admin Operations
  * 
  */
@@ -24,13 +23,13 @@ public interface AdminInterface {
 	
 
 	/**
-	 * Method to Delete Course from Course Catalog
-	 * @param courseCode
-	 * @param courseList : Courses available in the catalog
+	 * Method to Drop Course from Course Catalog
+	 * @param courseId
+	 * @param courseList : List of Courses in the catalog
 	 * @throws CourseNotFoundException 
 	 * @throws CourseNotDeletedException 
 	 */
-	public void deleteCourse(String courseCode, List<Course> courseList) throws CourseNotFoundException, CourseNotDeletedException;
+	public void deleteCourse(String courseId, List<Course> courseList) throws CourseNotFoundException, CourseNotDeletedException;
 	
 	/**
 	 * Method to add Course to Course Catalog
@@ -40,8 +39,8 @@ public interface AdminInterface {
 	public void addCourse(Course course, List<Course> courseList) throws CourseFoundException;
 	
 	/**
-	 * Method to view Students yet to be approved by Admin
-	 * @return List of Students with pending admissions
+	 * Method to view Students remaining to be approved by Admin
+	 * @return All Students with pending admissions
 	 */
 	public List<Student> viewPendingAdmissions();
 	
@@ -63,23 +62,23 @@ public interface AdminInterface {
 	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException;	
 	
 	/**
-	 * Method to assign Course to a Professor
-	 * @param courseCode
+	 * Method to allot a Course to a Professor
+	 * @param courseId
 	 * @param professorId
 	 * @throws CourseNotFoundException 
 	 * @throws UserNotFoundException 
 	 */
-	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException;
+	public void assignCourse(String courseId, String professorId) throws CourseNotFoundException, UserNotFoundException;
 	
 	/**
-	 * Method to get list of courses in catalog
+	 * Method to return list of courses in catalog
 	 * @param catalogId
 	 * @return List of courses in catalog
 	 */
 	public List<Course> viewCourses(int catalogId);
 	
 	/**
-	 * View professor in the institute
+	 * Display professor in the institute
 	 * @return List of the professors in the institute  
 	 */
 	public List<Professor> viewProfessors();

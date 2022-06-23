@@ -10,11 +10,11 @@ import com.flipkart.constant.Role;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.NotificationInterface;
-import com.flipkart.service.NotificationOperation;
+import com.flipkart.service.NotificationInterfaceImpl;
 import com.flipkart.service.StudentInterface;
-import com.flipkart.service.StudentOperation;
+import com.flipkart.service.StudentInterfaceImpl;
 import com.flipkart.service.UserInterface;
-import com.flipkart.service.UserOperation;
+import com.flipkart.service.UserInterfaceImpl;
 
 /**
  * 
@@ -25,9 +25,9 @@ import com.flipkart.service.UserOperation;
  */
 public class CRSApplication {
 	static boolean loggedin = false;
-	StudentInterface studentInterface=StudentOperation.getInstance();
-	UserInterface userInterface =UserOperation.getInstance();
-	NotificationInterface notificationInterface=NotificationOperation.getInstance();
+	StudentInterface studentInterface=StudentInterfaceImpl.getInstance();
+	UserInterface userInterface =UserInterfaceImpl.getInstance();
+	NotificationInterface notificationInterface=NotificationInterfaceImpl.getInstance();
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

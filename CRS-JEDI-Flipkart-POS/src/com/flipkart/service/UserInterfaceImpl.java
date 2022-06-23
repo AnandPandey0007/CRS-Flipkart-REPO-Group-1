@@ -5,31 +5,30 @@ import com.flipkart.dao.UserDaoOperation;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
- * 
- * @author JEDI-03
+ *
  * Implementations of User Operations
  *
  */
-public class UserOperation implements UserInterface {
+public class UserInterfaceImpl implements UserInterface {
 	
-	private static volatile UserOperation instance=null;
+	private static volatile UserInterfaceImpl instance=null;
 	UserDaoInterface userDaoInterface= UserDaoOperation.getInstance();
-	private UserOperation()
+	private UserInterfaceImpl()
 	{
 		
 	}
 	
 	/**
-	 * Method to make UserOperation Singleton
+	 * Method to make UserInterfaceImpl Singleton
 	 * @return
 	 */
-	public static UserOperation getInstance()
+	public static UserInterfaceImpl getInstance()
 	{
 		if(instance==null)
 		{
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(UserOperation.class){
-				instance=new UserOperation();
+			synchronized(UserInterfaceImpl.class){
+				instance=new UserInterfaceImpl();
 			}
 		}
 		return instance;

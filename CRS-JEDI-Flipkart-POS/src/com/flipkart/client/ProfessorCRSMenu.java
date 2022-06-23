@@ -9,7 +9,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.EnrolledStudent;
 import com.flipkart.exception.GradeNotAddedException;
 import com.flipkart.service.ProfessorInterface;
-import com.flipkart.service.ProfessorOperation;
+import com.flipkart.service.ProfessorInterfaceImpl;
 import com.flipkart.validator.ProfessorValidator;
 
 /**
@@ -19,7 +19,7 @@ import com.flipkart.validator.ProfessorValidator;
  * 
  */
 public class ProfessorCRSMenu {
-	ProfessorInterface professorInterface=ProfessorOperation.getInstance();
+	ProfessorInterface professorInterface=ProfessorInterfaceImpl.getInstance();
 	
 	/**
 	 * Method to create Professor menu

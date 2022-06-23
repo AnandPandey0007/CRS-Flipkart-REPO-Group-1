@@ -2,7 +2,6 @@ package com.flipkart.service;
 
 
 import com.flipkart.bean.Student;
-import com.flipkart.client.CRSApplication;
 import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
 import com.flipkart.dao.StudentDaoInterface;
@@ -10,31 +9,30 @@ import com.flipkart.dao.StudentDaoOperation;
 import com.flipkart.exception.StudentNotRegisteredException;
 
 /**
- * 
- * @author JEDI-03
+ *
  * Implementations of Student Operations
  *
  */
-public class StudentOperation implements StudentInterface {
+public class StudentInterfaceImpl implements StudentInterface {
 	
-	private static volatile StudentOperation instance=null;
+	private static volatile StudentInterfaceImpl instance=null;
 	StudentDaoInterface studentDaoInterface=StudentDaoOperation.getInstance();
 
-	private StudentOperation()
+	private StudentInterfaceImpl()
 	{
 		
 	}
 	/**
-	 * Method to make StudentOperation Singleton
+	 * Method to make StudentInterfaceImpl Singleton
 	 * @return
 	 */
-	public static StudentOperation getInstance()
+	public static StudentInterfaceImpl getInstance()
 	{
 		if(instance==null)
 		{
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(StudentOperation.class){
-				instance=new StudentOperation();
+			synchronized(StudentInterfaceImpl.class){
+				instance=new StudentInterfaceImpl();
 			}
 		}
 		return instance;

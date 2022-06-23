@@ -15,11 +15,11 @@ import com.flipkart.exception.CourseLimitExceedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.service.NotificationInterface;
-import com.flipkart.service.NotificationOperation;
+import com.flipkart.service.NotificationInterfaceImpl;
 import com.flipkart.service.ProfessorInterface;
-import com.flipkart.service.ProfessorOperation;
+import com.flipkart.service.ProfessorInterfaceImpl;
 import com.flipkart.service.RegistrationInterface;
-import com.flipkart.service.RegistrationOperation;
+import com.flipkart.service.RegistrationInterfaceImpl;
 
 
 /**
@@ -30,9 +30,9 @@ import com.flipkart.service.RegistrationOperation;
  */
 public class StudentCRSMenu {
 	Scanner sc = new Scanner(System.in);
-	RegistrationInterface registrationInterface = RegistrationOperation.getInstance();
-	ProfessorInterface professorInterface = ProfessorOperation.getInstance();
-	NotificationInterface notificationInterface=NotificationOperation.getInstance();
+	RegistrationInterface registrationInterface = RegistrationInterfaceImpl.getInstance();
+	ProfessorInterface professorInterface = ProfessorInterfaceImpl.getInstance();
+	NotificationInterface notificationInterface=NotificationInterfaceImpl.getInstance();
 	private boolean is_registered;
 	
 	/**

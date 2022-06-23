@@ -16,9 +16,9 @@ import com.flipkart.exception.StudentNotFoundForApprovalException;
 import com.flipkart.exception.UserIdAlreadyInUseException;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.AdminInterface;
-import com.flipkart.service.AdminOperation;
+import com.flipkart.service.AdminInterfaceImpl;
 import com.flipkart.service.NotificationInterface;
-import com.flipkart.service.NotificationOperation;
+import com.flipkart.service.NotificationInterfaceImpl;
 
 /**
  * 
@@ -27,9 +27,9 @@ import com.flipkart.service.NotificationOperation;
  * 
  */
 public class AdminCRSMenu {
-	AdminInterface adminOperation =AdminOperation.getInstance();
+	AdminInterface AdminInterfaceImpl =AdminInterfaceImpl.getInstance();
 	Scanner scanner = new Scanner(System.in);
-	NotificationInterface notificationInterface=NotificationOperation.getInstance();
+	NotificationInterface notificationInterface=NotificationInterfaceImpl.getInstance();
 	
 	/**
 	 * Method to Create Admin Menu
@@ -95,7 +95,7 @@ public class AdminCRSMenu {
 	 * Method to assign Course to a Professor
 	 */
 	private void assignCourseToProfessor() {
-		List<Professor> professorList= adminOperation.viewProfessors();
+		List<Professor> professorList= AdminInterfaceImpl.viewProfessors();
 		System.out.println("*************************** Professor *************************** ");
 		System.out.println(String.format("%20s | %20s | %20s ", "ProfessorId", "Name", "Designation"));
 		for(Professor professor : professorList) {
@@ -104,7 +104,7 @@ public class AdminCRSMenu {
 		
 		
 		System.out.println("\n\n");
-		List<Course> courseList= adminOperation.viewCourses(1);
+		List<Course> courseList= AdminInterfaceImpl.viewCourses(1);
 		System.out.println("**************** Course ****************");
 		System.out.println(String.format("%20s | %20s", "CourseCode", "CourseName"));
 		for(Course course : courseList) {
@@ -119,7 +119,7 @@ public class AdminCRSMenu {
 		
 		try {
 			
-			adminOperation.assignCourse(courseCode, userId);
+			AdminInterfaceImpl.assignCourse(courseCode, userId);
 		
 		}
 		catch(CourseNotFoundException | UserNotFoundException e) {
@@ -171,7 +171,7 @@ public class AdminCRSMenu {
 		professor.setRole(Role.stringToName("Professor"));
 		
 		try {
-			adminOperation.addProfessor(professor);
+			AdminInterfaceImpl.addProfessor(professor);
 		} catch (ProfessorNotAddedException | UserIdAlreadyInUseException e) {
 			System.out.println(e.getMessage());
 		}
@@ -184,7 +184,7 @@ public class AdminCRSMenu {
 	 */
 	private List<Student> viewPendingAdmissions() {
 		
-		List<Student> pendingStudentsList= adminOperation.viewPendingAdmissions();
+		List<Student> pendingStudentsList= AdminInterfaceImpl.viewPendingAdmissions();
 		if(pendingStudentsList.size() == 0) {
 			return pendingStudentsList;
 		}
@@ -209,7 +209,7 @@ public class AdminCRSMenu {
 		int studentUserIdApproval = scanner.nextInt();
 		
 		try {
-			adminOperation.approveStudent(studentUserIdApproval, studentList);
+			AdminInterfaceImpl.approveStudent(studentUserIdApproval, studentList);
 			//send notification from system
 			notificationInterface.sendNotification(NotificationType.REGISTRATION_APPROVAL, studentUserIdApproval, null,0);
 	
@@ -228,7 +228,7 @@ public class AdminCRSMenu {
 		String courseCode = scanner.next();
 		
 		try {
-			adminOperation.deleteCourse(courseCode, courseList);
+			AdminInterfaceImpl.deleteCourse(courseCode, courseList);
 		} catch (CourseNotFoundException | CourseNotDeletedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -250,7 +250,7 @@ public class AdminCRSMenu {
 		Course course = new Course(courseCode, courseName, null, 10);
 		
 		try {
-			adminOperation.addCourse(course, courseList);
+			AdminInterfaceImpl.addCourse(course, courseList);
 		} catch (CourseFoundException e) {
 			System.out.println(e.getMessage());
 		}						
@@ -262,7 +262,7 @@ public class AdminCRSMenu {
 	 * @return List of courses in catalogue
 	 */
 	private List<Course> viewCoursesInCatalogue() {
-		List<Course> courseList = adminOperation.viewCourses(1);
+		List<Course> courseList = AdminInterfaceImpl.viewCourses(1);
 		if(courseList.size() == 0) {
 			System.out.println("No course in the catalogue!");
 			return courseList;

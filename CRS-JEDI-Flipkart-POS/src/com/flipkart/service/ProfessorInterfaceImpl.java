@@ -1,48 +1,40 @@
 package com.flipkart.service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.EnrolledStudent;
-import com.flipkart.bean.Student;
-import com.flipkart.constant.Grade;
-import com.flipkart.constant.SQLQueriesConstants;
 import com.flipkart.dao.ProfessorDaoInterface;
 import com.flipkart.dao.ProfessorDaoOperation;
 import com.flipkart.exception.GradeNotAddedException;
-import com.flipkart.utils.DBUtils;
 
 /**
- * 
- * @author JEDI-03
+ *
  * Implementations of Admin Operations
  *
  */
-public class ProfessorOperation implements ProfessorInterface {
+public class ProfessorInterfaceImpl implements ProfessorInterface {
 	
-	private static volatile ProfessorOperation instance=null;
+	private static volatile ProfessorInterfaceImpl instance=null;
 	ProfessorDaoInterface professorDAOInterface=ProfessorDaoOperation.getInstance();
-	private ProfessorOperation()
+	private ProfessorInterfaceImpl()
 	{
 
 	}
 	
 	/**
-	 * Method to make ProfessorOperation Singleton
+	 * Method to make ProfessorInterfaceImpl Singleton
 	 * @return
 	 */
-	public static ProfessorOperation getInstance()
+	public static ProfessorInterfaceImpl getInstance()
 	{
 		if(instance==null)
 		{
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(ProfessorOperation.class){
-				instance=new ProfessorOperation();
+			synchronized(ProfessorInterfaceImpl.class){
+				instance=new ProfessorInterfaceImpl();
 			}
 		}
 		return instance;
@@ -52,16 +44,16 @@ public class ProfessorOperation implements ProfessorInterface {
 	/**
 	 * Method to grade a Student
 	 * @param studentId
-	 * @param courseCode
+	 * @param courseId
 	 * @param grade
 	 * @return boolean indicating if grade is added or not
 	 * @throws GradeNotAddedException
 	 */
 	@Override
-	public boolean addGrade(int studentId,String courseCode,String grade) throws GradeNotAddedException {
+	public boolean addGrade(int studentId,String courseId,String grade) throws GradeNotAddedException {
 		try
 		{
-			professorDAOInterface.addGrade(studentId, courseCode, grade);
+			professorDAOInterface.addGrade(studentId, courseId, grade);
 		}
 		catch(Exception ex)
 		{

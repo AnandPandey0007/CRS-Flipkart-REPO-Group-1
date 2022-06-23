@@ -11,16 +11,15 @@ import com.flipkart.dao.NotificationDaoInterface;
 import com.flipkart.dao.NotificationDaoOperation;
 
 /**
- * 
- * @author JEDI-03
- * This method implements all the method related to the notification system
+ *
+ * This method implements the notification system
  */
-public class NotificationOperation implements NotificationInterface {
+public class NotificationInterfaceImpl implements NotificationInterface {
 
-	private static volatile NotificationOperation instance=null;
+	private static volatile NotificationInterfaceImpl instance=null;
 	NotificationDaoInterface notificationDaoInterface=NotificationDaoOperation.getInstance();
 
-	private NotificationOperation()
+	private NotificationInterfaceImpl()
 	{
 
 	}
@@ -29,13 +28,13 @@ public class NotificationOperation implements NotificationInterface {
 	 * Method to make NotificationDaoOperation Singleton
 	 * @return
 	 */
-	public static NotificationOperation getInstance()
+	public static NotificationInterfaceImpl getInstance()
 	{
 		if(instance==null)
 		{
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(NotificationOperation.class){
-				instance=new NotificationOperation();
+			synchronized(NotificationInterfaceImpl.class){
+				instance=new NotificationInterfaceImpl();
 			}
 		}
 		return instance;

@@ -1,0 +1,7 @@
+/.metadata/
+/bin/
+/.settings/
+.classpath
+/libs/
+contact.log
+src/config.properties

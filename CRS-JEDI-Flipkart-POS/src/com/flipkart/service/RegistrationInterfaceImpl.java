@@ -4,9 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.flipkart.bean.Course;
-import com.flipkart.bean.Notification;
 import com.flipkart.bean.StudentGrade;
-import com.flipkart.constant.ModeOfPayment;
 import com.flipkart.dao.RegistrationDaoInterface;
 import com.flipkart.dao.RegistrationDaoOperation;
 import com.flipkart.exception.CourseLimitExceedException;
@@ -15,15 +13,14 @@ import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.validator.StudentValidator;
 
 /**
- * @author JEDI-03
  * The Registration Operation provides the business logic for student registration.
  * 
  */
-public class RegistrationOperation implements RegistrationInterface {
+public class RegistrationInterfaceImpl implements RegistrationInterface {
 
-	private static volatile RegistrationOperation instance = null;
+	private static volatile RegistrationInterfaceImpl instance = null;
 
-	private RegistrationOperation() {
+	private RegistrationInterfaceImpl() {
 	}
 
 	/**
@@ -31,10 +28,10 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * 
 	 * @return
 	 */
-	public static RegistrationOperation getInstance() {
+	public static RegistrationInterfaceImpl getInstance() {
 		if (instance == null) {
-			synchronized (RegistrationOperation.class) {
-				instance = new RegistrationOperation();
+			synchronized (RegistrationInterfaceImpl.class) {
+				instance = new RegistrationInterfaceImpl();
 			}
 		}
 		return instance;
@@ -44,9 +41,9 @@ public class RegistrationOperation implements RegistrationInterface {
 
 	/**
 	 * Method to add Course selected by student 
-	 * @param courseCode
+	 * @param courseId
 	 * @param studentId
-	 * @param courseList 
+	 * @param courseList
 	 * @return boolean indicating if the course is added successfully
 	 * @throws CourseNotFoundException
 	 * @throws SeatNotAvailableException 
@@ -54,7 +51,7 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	public boolean addCourse(String courseCode, int studentId,List<Course> availableCourseList) throws CourseNotFoundException, CourseLimitExceedException, SeatNotAvailableException, SQLException 
+	public boolean addCourse(String courseId, int studentId,List<Course> availableCourseList) throws CourseNotFoundException, CourseLimitExceedException, SeatNotAvailableException, SQLException 
 	{
        
 		
@@ -63,28 +60,28 @@ public class RegistrationOperation implements RegistrationInterface {
 		{	
 			throw new CourseLimitExceedException(6);
 		}
-		else if (registrationDaoInterface.isRegistered(courseCode, studentId)) 
+		else if (registrationDaoInterface.isRegistered(courseId, studentId)) 
 		{
 			return false;
 		} 
-		else if (!registrationDaoInterface.seatAvailable(courseCode)) 
+		else if (!registrationDaoInterface.seatAvailable(courseId)) 
 		{
-			throw new SeatNotAvailableException(courseCode);
+			throw new SeatNotAvailableException(courseId);
 		} 
-		else if(!StudentValidator.isValidCourseCode(courseCode, availableCourseList))
-		{
-			throw new CourseNotFoundException(courseCode);
-		}
+//		else if(!StudentValidator.isValidcourseId(courseId, availableCourseList))
+//		{
+//			throw new CourseNotFoundException(courseId);
+//		}
 		
 		  
 
-		return registrationDaoInterface.addCourse(courseCode, studentId);
+		return registrationDaoInterface.addCourse(courseId, studentId);
 
 	}
 
 	/**
 	 *  Method to drop Course selected by student
-	 * @param courseCode
+	 * @param courseId
 	 * @param studentId
 	 * @param registeredCourseList 
 	 * @return boolean indicating if the course is dropped successfully
@@ -92,13 +89,13 @@ public class RegistrationOperation implements RegistrationInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	public boolean dropCourse(String courseCode, int studentId,List<Course> registeredCourseList) throws CourseNotFoundException, SQLException {
-		  if(!StudentValidator.isRegistered(courseCode, studentId, registeredCourseList))
+	public boolean dropCourse(String courseId, int studentId,List<Course> registeredCourseList) throws CourseNotFoundException, SQLException {
+		  if(!StudentValidator.isRegistered(courseId, studentId, registeredCourseList))
 	        {
-	        	throw new CourseNotFoundException(courseCode);
+	        	throw new CourseNotFoundException(courseId);
 	        }
 		
-		return registrationDaoInterface.dropCourse(courseCode, studentId);
+		return registrationDaoInterface.dropCourse(courseId, studentId);
 
 	}
 

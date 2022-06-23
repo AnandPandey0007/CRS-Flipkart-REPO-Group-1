@@ -4,8 +4,7 @@ import com.flipkart.constant.Gender;
 import com.flipkart.exception.StudentNotRegisteredException;
 
 /**
- * 
- * @author JEDI-03
+ *
  * Interface for Student Operations
  *
  */

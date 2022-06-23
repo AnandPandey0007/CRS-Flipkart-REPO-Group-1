@@ -12,39 +12,38 @@ import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.SeatNotAvailableException;
 
 /**
- * 
- * @author JEDI-03
+ *
  * Interface for Registration Operation
  * 
  */
 public interface RegistrationInterface {
 	
 	/**
-	 * Method to add Course selected by student 
-	 * @param courseCode
+	 * Method for a student to add a course
+	 * @param courseId
 	 * @param studentId
-	 * @param courseList 
-	 * @return boolean indicating if the course is added successfully
+	 * @param courseList
+	 * @return boolean to indicate if the course is added successfully
 	 * @throws CourseNotFoundException
-	 * @throws SeatNotAvailableException 
-	 * @throws CourseLimitExceedException 
-	 * @throws SQLException 
+	 * @throws SeatNotAvailableException
+	 * @throws CourseLimitExceedException
+	 * @throws SQLException
 	 */
-	public boolean addCourse(String courseCode, int studentId, List<Course> courseList) throws CourseNotFoundException, CourseLimitExceedException, SeatNotAvailableException, SQLException ;
+	public boolean addCourse(String courseId, int studentId, List<Course> courseList) throws CourseNotFoundException, CourseLimitExceedException, SeatNotAvailableException, SQLException ;
 	
 	/**
-	 *  Method to drop Course selected by student
-	 * @param courseCode
+	 *  Method for a student to drop a selected Course
+	 * @param courseId
 	 * @param studentId
 	 * @param registeredCourseList 
 	 * @return boolean indicating if the course is dropped successfully
 	 * @throws CourseNotFoundException
 	 * @throws SQLException 
 	 */
-	public boolean dropCourse(String courseCode, int studentId, List<Course> registeredCourseList) throws CourseNotFoundException, SQLException;
+	public boolean dropCourse(String courseId, int studentId, List<Course> registeredCourseList) throws CourseNotFoundException, SQLException;
 	
 	/**
-	 *  Method to view the list of available courses
+	 *  Method for viewing the list of available courses
 	 * @param studentId
 	 * @return List of courses
 	 * @throws SQLException 
@@ -60,15 +59,14 @@ public interface RegistrationInterface {
 	public List<Course> viewRegisteredCourses(int studentId) throws SQLException;
 	
 	/**
-	 * Method to view grade card for students
+	 * Method for students to view grade card
 	 * @param studentId
-	 * @return List of Student's Grades
+	 * @return List of Grades of Student
 	 * @throws SQLException 
 	 */
 	public List<StudentGrade> viewGradeCard(int studentId) throws SQLException;
 	
-	/** Method for Fee Calculation for selected courses
-	 * Fee calculation for selected courses
+	/** Method to calculate Fee for selected courses
 	 * @param studentId
 	 * @return Fee Student has to pay
 	 * @throws SQLException 
@@ -76,7 +74,7 @@ public interface RegistrationInterface {
 	public double calculateFee(int studentId) throws SQLException;
 
 	/**
-	 *  Method to check student registration status
+	 *  Method to check registration status for a student
 	 * @param studentId
 	 * @return boolean indicating if the student's registration status
 	 * @throws SQLException

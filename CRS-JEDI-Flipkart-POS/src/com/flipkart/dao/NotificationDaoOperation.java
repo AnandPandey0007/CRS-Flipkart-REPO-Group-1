@@ -10,7 +10,7 @@ import java.util.UUID;
 import com.flipkart.constant.ModeOfPayment;
 import com.flipkart.constant.NotificationType;
 import com.flipkart.constant.SQLQueriesConstants;
-import com.flipkart.service.NotificationOperation;
+import com.flipkart.service.NotificationInterfaceImpl;
 import com.flipkart.utils.DBUtils;
 
 /**

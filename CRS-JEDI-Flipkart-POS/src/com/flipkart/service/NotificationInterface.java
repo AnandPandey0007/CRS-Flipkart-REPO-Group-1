@@ -6,9 +6,8 @@ import com.flipkart.constant.ModeOfPayment;
 import com.flipkart.constant.NotificationType;
 
 /**
- * 
- * @author JEDI-03
- * Notification logic for sending notifications for multiple events such as
+ *
+ * Notifications:
  * 1. Student Registration
  * 2. Registration Approval
  * 3. Fee payment
