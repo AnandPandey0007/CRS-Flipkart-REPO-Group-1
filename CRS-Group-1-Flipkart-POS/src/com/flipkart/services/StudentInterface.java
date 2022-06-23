@@ -4,6 +4,7 @@ import com.flipkart.beans.Course;
 import com.flipkart.beans.Grade;
 import com.flipkart.constant.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface StudentInterface {
@@ -11,7 +12,7 @@ public interface StudentInterface {
     public String getStudentId(String userId);
     public boolean isApproved(String studentId);
 
-    public void addCourse(String courseCode, Course newCourse);
+    public void addCourse(String studentId, String courseCode) throws SQLException;
 
     public void dropCourse(String studentId, Course droppedCourse);
 

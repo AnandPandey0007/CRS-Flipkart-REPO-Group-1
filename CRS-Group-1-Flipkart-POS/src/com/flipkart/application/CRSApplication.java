@@ -1,26 +1,27 @@
 package com.flipkart.application;
 
 import com.flipkart.beans.Professor;
+import com.flipkart.constant.Role;
+import com.flipkart.services.UserInterfaceImpl;
+import com.flipkart.utils.DBUtils;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class CRSApplication {
     static Scanner scanner=new Scanner(System.in);
-    static HashMap<String, String> studentCredentials=new HashMap<>();
-    static HashMap<String, String> professorCredentials=new HashMap<>();
-    static HashMap<String, String> adminCredentials=new HashMap<>();
-
+    static UserInterfaceImpl userInterface=new UserInterfaceImpl();
     static String userId;
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) throws Exception {
         System.out.println("CRS-Application is running");
-        hardCodeData();
+        DBUtils.setupConnection();
         showMainMenu();
     }
 
-    public static void showMainMenu() throws IOException {
+    public static void showMainMenu() throws Exception {
         Scanner scanner=new Scanner(System.in);
         System.out.println("----------Welcome to Course Management System---------");
         System.out.println("1. Login");
@@ -40,50 +41,42 @@ public class CRSApplication {
                      break;
         }
     }
-
-    public static void login() throws IOException {
+    public static void login() throws IOException, Exception {
         System.out.println("Welcome to login page...");
-        System.out.println("Enter S for Student");
-        System.out.println("Enter P for Professor");
-        System.out.println("Enter A for Admin");
-        char role=scanner.next().charAt(0);
-        switch (role){
-            case 'S':
-                if(checkCredentials(studentCredentials)) {
-                    StudentCRSMenu studentCRSMenu = new StudentCRSMenu();
-                    studentCRSMenu.showStudentMenu(userId);
-                } else {
-                    System.out.println("Authentication failed");
-                }
-                break;
-            case 'P':
-                if(checkCredentials(professorCredentials)){
-                    ProfessorCRSMenu professorCRSMenu=new ProfessorCRSMenu();
-                    professorCRSMenu.showProfessorMenu(userId);
-                }else {
-                    System.out.println("Authentication failed");
-                }
-                break;
-            case 'A':
-                if(checkCredentials(adminCredentials)){
-                    AdminCRSMenu adminCRSMenuCRSMenu=new AdminCRSMenu();
-                    adminCRSMenuCRSMenu.showAdminMenu(userId);
-                }else {
-                    System.out.println("Authentication failed");
-                }
-                break;
-            default:
-                System.out.println("Enter a valid choice");
-                break;
+        System.out.println("Enter Student/Professor/Admin");
+        String role=scanner.next();
+        if(role.equals("student")) {
+            if (checkCredentials(Role.stringToRole("student"))) {
+                StudentCRSMenu studentCRSMenu = new StudentCRSMenu();
+                studentCRSMenu.showStudentMenu(userId);
+            } else {
+                System.out.println("Authentication failed");
+            }
+        } else if(role.equals("professor")) {
+            if (checkCredentials(Role.stringToRole("professor"))) {
+                ProfessorCRSMenu professorCRSMenu = new ProfessorCRSMenu();
+                professorCRSMenu.showProfessorMenu(userId);
+            } else {
+                System.out.println("Authentication failed");
+            }
+        } else if(role.equals("admin")) {
+            if (checkCredentials(Role.stringToRole("admin"))) {
+                AdminCRSMenu adminCRSMenuCRSMenu = new AdminCRSMenu();
+                adminCRSMenuCRSMenu.showAdminMenu(userId);
+            } else {
+                System.out.println("Authentication failed");
+            }
+        } else {
+            System.out.println("Enter a valid choice");
         }
     }
 
-    public static boolean checkCredentials(HashMap<String, String> user){
+    public static boolean checkCredentials(Role role) throws Exception {
         System.out.println("Enter your studentId: ");
         userId=scanner.next();
         System.out.println("Enter your password");
         String password=scanner.next();
-        return user.containsKey(userId) && user.get(userId).equals(password);
+        return userInterface.loginUser(userId, password);
     }
 
     public static void registerStudent(){
@@ -94,9 +87,4 @@ public class CRSApplication {
         System.out.println("Updating password.....");
     }
 
-    public static void hardCodeData(){
-        studentCredentials.put("AnandPandey", "Flipkart");
-        adminCredentials.put("AnandPandey", "Flipkart");
-        professorCredentials.put("AnandPandey", "Flipkart");
-    }
 }

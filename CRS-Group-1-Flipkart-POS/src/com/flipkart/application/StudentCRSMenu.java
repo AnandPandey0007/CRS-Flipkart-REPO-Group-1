@@ -5,13 +5,14 @@ import com.flipkart.services.StudentInterfaceImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 
 public class StudentCRSMenu {
     BufferedReader reader =new BufferedReader(new InputStreamReader(System.in));
     AdminInterfaceImpl adminInterfaceImpl=new AdminInterfaceImpl();
     StudentInterfaceImpl studentInterfaceImpl=new StudentInterfaceImpl();
     //display options available for the student
-    public void showStudentMenu(String studentId) throws IOException {
+    public void showStudentMenu(String studentId) throws IOException, SQLException {
         int choice=9;
         showChoices();
         do {
@@ -58,11 +59,11 @@ public class StudentCRSMenu {
         System.out.println(username+" has been successfully registered");
     }
 
-    public void addCourse(String studentId) throws IOException{
+    public void addCourse(String studentId) throws IOException, SQLException {
         System.out.println("Enter the course code you want to add: ");
-        String course= reader.readLine();
-        studentInterfaceImpl.addCourse(studentId, adminInterfaceImpl.getCourseFromId(course));
-        System.out.println(adminInterfaceImpl.getCourseFromId(course).getCourseName()+" added successfully");
+        String courseId= reader.readLine();
+        studentInterfaceImpl.addCourse(studentId, courseId);
+        System.out.println(courseId+" added successfully");
     }
     public void dropCourse(String studentId) throws IOException{
         System.out.println("Deleting course");

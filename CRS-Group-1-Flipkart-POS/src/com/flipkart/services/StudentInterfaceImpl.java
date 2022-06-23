@@ -4,14 +4,20 @@ import com.flipkart.beans.Course;
 import com.flipkart.beans.Grade;
 import com.flipkart.beans.Student;
 import com.flipkart.constant.*;
+import com.flipkart.dao.AdminDAOOperation;
+import com.flipkart.dao.RegisteredCourseOperation;
+import com.flipkart.dao.StudentDAOOperation;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class StudentInterfaceImpl implements StudentInterface{
-
+    StudentDAOOperation studentDAOOperation=new StudentDAOOperation();
+    RegisteredCourseOperation registeredCourseOperation=new RegisteredCourseOperation();
+    AdminDAOOperation adminDAOOperation=new AdminDAOOperation();
     Map<String, Student> students;
     Map<String, List<Course>> courses;
 
@@ -39,8 +45,9 @@ public class StudentInterfaceImpl implements StudentInterface{
     }
 
     @Override
-    public void addCourse(String studentId, Course newCourse) {
-        students.get(studentId).addCourses(newCourse);
+    public void addCourse(String studentId, String courseId) throws SQLException {
+        registeredCourseOperation.addCourse(studentId, adminDAOOperation.getProfessorIdFromCourseID(), courseId);//adding student in enrolled student list
+        adminDAOOperation.setCourseAvailability(courseId); //setting availability in course-catalog table by admin
     }
 
     @Override
