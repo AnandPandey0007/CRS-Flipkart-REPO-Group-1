@@ -19,7 +19,7 @@ public class SQLQueriesConstants {
 	public static final String VIEW_PROFESSOR_QUERY = "select userId, name, gender, department, designation, address, country from Professor natural join User";
 	
 	public static final String ADD_STUDENT="insert into student (userId,branchName,batch,isApproved) values (?,?,?,?)";
-	public static final String VERIFY_CREDENTIALS="select password from user where userId = ?";
+	public static final String VERIFY_CREDENTIALS="select password from user where userid = ?";
 	public static final String GET_ROLE="select role from user where userId = ? ";
 	public static final String IS_APPROVED="select isApproved from student where studentId = ? ";
 	public static final String GET_STUDENT_ID="select studentId from student where userId = ? ";

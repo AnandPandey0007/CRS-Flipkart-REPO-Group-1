@@ -20,8 +20,7 @@ public class UserDaoOperation implements UserDaoInterface{
 	/**
 	 * Default Constructor
 	 */
-	private UserDaoOperation()
-	{
+	private UserDaoOperation() {
 		
 	}
 	
