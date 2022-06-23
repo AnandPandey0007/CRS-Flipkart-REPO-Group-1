@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
-
 import com.flipkart.constant.SQLQueriesConstants;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.utils.DBUtils;
@@ -18,7 +16,6 @@ import com.flipkart.utils.DBUtils;
  */
 public class UserDaoOperation implements UserDaoInterface{
 	private static volatile UserDaoOperation instance=null;
-	private static Logger logger = Logger.getLogger(UserDaoOperation.class);
 	
 	/**
 	 * Default Constructor
@@ -46,7 +43,6 @@ public class UserDaoOperation implements UserDaoInterface{
 
 	/**
 	 * Method to update password of user in DataBase
-	 * @param userID
 	 * @param newPassword
 	 * @return Update Password operation Status
 	 */
@@ -68,7 +64,7 @@ public class UserDaoOperation implements UserDaoInterface{
 		}
 		catch(SQLException e)
 		{
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		finally
 		{
@@ -113,7 +109,7 @@ public class UserDaoOperation implements UserDaoInterface{
 		}
 		catch(SQLException ex)
 		{
-			logger.info("Something went wrong, please try again! "+ ex.getMessage());
+			System.out.println("Something went wrong, please try again! "+ ex.getMessage());
 		}
 		finally
 		{
@@ -159,7 +155,7 @@ public class UserDaoOperation implements UserDaoInterface{
 		}
 		catch(SQLException e)
 		{
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		finally
 		{

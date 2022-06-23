@@ -1,11 +1,9 @@
 package com.flipkart.client;
-
+import java.util.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import org.apache.log4j.Logger;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.EnrolledStudent;
@@ -21,9 +19,6 @@ import com.flipkart.validator.ProfessorValidator;
  * 
  */
 public class ProfessorCRSMenu {
-
-	
-	private static Logger logger = Logger.getLogger(ProfessorCRSMenu.class);
 	ProfessorInterface professorInterface=ProfessorOperation.getInstance();
 	
 	/**
@@ -37,16 +32,15 @@ public class ProfessorCRSMenu {
 		Scanner sc=new Scanner(System.in);
 		
 		int input;
-		while(CRSApplication.loggedin)
-		{
-			logger.info("*****************************");
-			logger.info("**********Professor Menu*********");
-			logger.info("*****************************");
-			logger.info("1. View Courses");
-			logger.info("2. View Enrolled Students");
-			logger.info("3. Add grade");
-			logger.info("4. Logout");
-			logger.info("*****************************");
+		while(CRSApplication.loggedin) {
+			System.out.println("*****************************");
+			System.out.println("**********Professor Menu*********");
+			System.out.println("*****************************");
+			System.out.println("1. View Courses");
+			System.out.println("2. View Enrolled Students");
+			System.out.println("3. Add grade");
+			System.out.println("4. Logout");
+			System.out.println("*****************************");
 			
 			//input user
 			input=sc.nextInt();
@@ -70,7 +64,7 @@ public class ProfessorCRSMenu {
 					CRSApplication.loggedin=false;
 					return;
 				default:
-					logger.warn("***** Wrong Choice *****");
+					System.out.println("***** Wrong Choice *****");
 			}
 		}
 		
@@ -84,20 +78,20 @@ public class ProfessorCRSMenu {
 	public void viewEnrolledStudents(String profId)
 	{
 		List<Course> coursesEnrolled=professorInterface.getCourses(profId);
-		logger.info(String.format("%20s %20s %20s","COURSE CODE","COURSE CODE","Students  enrolled" ));
+		System.out.println(String.format("%20s %20s %20s","COURSE CODE","COURSE CODE","Students  enrolled" ));
 		try
 		{
 			List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
 			enrolledStudents=professorInterface.viewEnrolledStudents(profId);
 			for(EnrolledStudent obj: enrolledStudents)
 			{
-				logger.info(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),obj.getStudentId()));
+				System.out.println(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),obj.getStudentId()));
 			}
 			
 		}
 		catch(Exception ex)
 		{
-			logger.error(ex.getMessage()+"Something went wrong, please try again later!");
+			System.out.println(ex.getMessage()+"Something went wrong, please try again later!");
 		}
 	}
 
@@ -110,15 +104,15 @@ public class ProfessorCRSMenu {
 		try
 		{
 			List<Course> coursesEnrolled=professorInterface.getCourses(profId);
-			logger.info(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","No. of Students  enrolled" ));
+			System.out.println(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","No. of Students  enrolled" ));
 			for(Course obj: coursesEnrolled)
 			{
-				logger.info(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),10- obj.getSeats()));
+				System.out.println(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),10- obj.getSeats()));
 			}		
 		}
 		catch(Exception ex)
 		{
-			logger.error("Something went wrong!"+ex.getMessage());
+			System.out.println("Something went wrong!"+ex.getMessage());
 		}
 	}
 	
@@ -136,38 +130,38 @@ public class ProfessorCRSMenu {
 		{
 			List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
 			enrolledStudents=professorInterface.viewEnrolledStudents(profId);
-			logger.info(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","Student ID" ));
+			System.out.println(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","Student ID" ));
 			for(EnrolledStudent obj: enrolledStudents)
 			{
-				logger.info(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),obj.getStudentId()));
+				System.out.println(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),obj.getStudentId()));
 			}
 			List<Course> coursesEnrolled=new ArrayList<Course>();
 			coursesEnrolled	=professorInterface.getCourses(profId);
-			logger.info("----------------Add Grade--------------");
-			logger.info("Enter student id");
+			System.out.println("----------------Add Grade--------------");
+			System.out.println("Enter student id");
 			studentId=sc.nextInt();
-			logger.info("Enter course code");
+			System.out.println("Enter course code");
 			courseCode=sc.next();
-			logger.info("Enter grade");
+			System.out.println("Enter grade");
 			grade=sc.next();
 			if(ProfessorValidator.isValidStudent(enrolledStudents, studentId) && ProfessorValidator.isValidCourse(coursesEnrolled, courseCode))
 			{
 				professorInterface.addGrade(studentId, courseCode, grade);
-				logger.info("Grade added successfully for "+studentId);
+				System.out.println("Grade added successfully for "+studentId);
 			}
 			else
 			{
-				logger.info("Invalid data entered, try again!");
+				System.out.println("Invalid data entered, try again!");
 			}
 		}
 		catch(GradeNotAddedException ex)
 		{
-			logger.error("Grade cannot be added for"+ex.getStudentId());
+			System.out.println("Grade cannot be added for"+ex.getStudentId());
 			
 		}
 		catch(SQLException ex)
 		{
-			logger.error("Grade not added, SQL exception occured "+ex.getMessage());
+			System.out.println("Grade not added, SQL exception occured "+ex.getMessage());
 		}
 	
 	}

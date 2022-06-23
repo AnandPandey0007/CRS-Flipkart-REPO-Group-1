@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
 
-import org.apache.log4j.Logger;
-
 import com.flipkart.constant.ModeOfPayment;
 import com.flipkart.constant.NotificationType;
 import com.flipkart.constant.SQLQueriesConstants;
@@ -24,7 +22,6 @@ import com.flipkart.utils.DBUtils;
  */
 public class NotificationDaoOperation implements NotificationDaoInterface{
 	private static volatile NotificationDaoOperation instance=null;
-	private static Logger logger = Logger.getLogger(NotificationDaoOperation.class);
 	
 	/**
 	 * Default Constructor
@@ -74,7 +71,7 @@ public class NotificationDaoOperation implements NotificationDaoInterface{
 				//insert into payment, get reference id and add here
 				UUID referenceId=addPayment(studentId, modeOfPayment,amount);
 				ps.setString(3, referenceId.toString());	
-				logger.info("Payment successful, Reference ID: "+referenceId);
+				System.out.println("Payment successful, Reference ID: "+referenceId);
 			}
 			else
 				ps.setString(3,"");
@@ -87,13 +84,13 @@ public class NotificationDaoOperation implements NotificationDaoInterface{
 			switch(type)
 			{
 			case REGISTRATION:
-				logger.info("Registration successfull. Administration will verify the details and approve it!");
+				System.out.println("Registration successfull. Administration will verify the details and approve it!");
 				break;
 			case REGISTRATION_APPROVAL:
-				logger.info("Student with id "+studentId+" has been approved!");
+				System.out.println("Student with id "+studentId+" has been approved!");
 				break;
 			case PAYMENT:
-				logger.info("Student with id "+studentId+" fee has been paid");
+				System.out.println("Student with id "+studentId+" fee has been paid");
 			}
 			
 		}

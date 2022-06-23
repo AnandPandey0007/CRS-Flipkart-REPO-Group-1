@@ -3,7 +3,7 @@ package com.flipkart.service;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import org.apache.log4j.Logger;
+
 
 import com.flipkart.constant.ModeOfPayment;
 import com.flipkart.constant.NotificationType;
@@ -19,7 +19,7 @@ public class NotificationOperation implements NotificationInterface {
 
 	private static volatile NotificationOperation instance=null;
 	NotificationDaoInterface notificationDaoInterface=NotificationDaoOperation.getInstance();
-	private static Logger logger = Logger.getLogger(NotificationOperation.class);
+
 	private NotificationOperation()
 	{
 
@@ -58,7 +58,7 @@ public class NotificationOperation implements NotificationInterface {
 		}
 		catch(SQLException ex)
 		{
-			logger.error("Error occured "+ex.getMessage());
+			System.out.println("Error occured "+ex.getMessage());
 		}
 		return notificationId;
 	}
