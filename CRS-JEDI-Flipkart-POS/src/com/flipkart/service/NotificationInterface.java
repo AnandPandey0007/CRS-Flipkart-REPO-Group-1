@@ -7,7 +7,7 @@ import com.flipkart.constant.NotificationType;
 
 /**
  * 
- * @author JEDI-03
+ * 
  * Notification logic for sending notifications for multiple events such as
  * 1. Student Registration
  * 2. Registration Approval
@@ -22,7 +22,7 @@ public interface NotificationInterface {
 	 * @param modeOfPayment: payment mode used
 	 * @return notification id for the record added in the database
 	 */
-	public int sendNotification(NotificationType type,int studentId,ModeOfPayment modeOfPayment,double amount);
+	public int sendNotification(NotificationType type,String studentId,ModeOfPayment modeOfPayment,double amount);
 	
 	/**
 	 * Method to return UUID for a transaction

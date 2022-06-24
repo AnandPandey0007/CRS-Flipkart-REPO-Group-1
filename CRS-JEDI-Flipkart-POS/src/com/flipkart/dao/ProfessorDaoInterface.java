@@ -7,7 +7,7 @@ import com.flipkart.bean.Student;
 
 /**
  * 
- * @author JEDI-03
+ *
  * Interface for Admin Dao Operations
  * 
  */
@@ -23,19 +23,17 @@ public interface ProfessorDaoInterface {
 	
 	/**
 	 * Method to view list of enrolled Students using SQL Commands
-	 * @param: profId: professor id 
-	 * @param: courseCode: course code of the professor
-	 * @return: return the enrolled students for the corresponding professor and course code.
+	 * @param profId professor id
+	 * @return return the enrolled students for the corresponding professor and course code.
 	 */
 	public List<EnrolledStudent> getEnrolledStudents(String profId);
 	
 	/**
 	 * Method to Grade a student using SQL Commands
-	 * @param: profId: professor id 
-	 * @param: courseCode: course code for the corresponding 
-	 * @return: returns the status after adding the grade
+	 * @param courseCode: course code for the corresponding
+	 * @return returns the status after adding the grade
 	 */
-	public Boolean addGrade(int studentId,String courseCode,String grade);
+	public Boolean addGrade(String studentId,String courseCode,String grade);
 
 
 	/**

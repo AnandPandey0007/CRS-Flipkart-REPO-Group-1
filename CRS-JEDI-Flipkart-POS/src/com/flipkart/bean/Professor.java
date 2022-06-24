@@ -4,10 +4,13 @@
 package com.flipkart.bean;
 import java.util.Date;
 /**
- * @author JEDI-03
+ *
  *
  */
 public class Professor extends User{
+
+
+	private String name;
 	private String department;
 	private String designation;
 	
@@ -15,6 +18,15 @@ public class Professor extends User{
 	 * Constructor
 	 */
 	public Professor() {}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	
 	/**
 	 * 

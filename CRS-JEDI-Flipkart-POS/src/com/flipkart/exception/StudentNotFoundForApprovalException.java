@@ -5,13 +5,13 @@ package com.flipkart.exception;
 
 /**
  * Exception thrown when student is not found for approval
- * @author JEDI-03
+ * 
  *
  */
 public class StudentNotFoundForApprovalException extends Exception {
-	private int studentId;
+	private String studentId;
 	
-	public StudentNotFoundForApprovalException(int studentId) {
+	public StudentNotFoundForApprovalException(String studentId) {
 		this.studentId = studentId;
 	}
 	
@@ -19,7 +19,7 @@ public class StudentNotFoundForApprovalException extends Exception {
 	 * Getter function for studentId
 	 * @return
 	 */
-	public int getStudentId() {
+	public String getStudentId() {
 		return this.studentId;
 	}
 	

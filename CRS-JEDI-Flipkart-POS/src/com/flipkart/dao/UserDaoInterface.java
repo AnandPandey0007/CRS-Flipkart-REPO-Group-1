@@ -4,7 +4,7 @@ import com.flipkart.exception.UserNotFoundException;
 
 /**
  * 
- * @author JEDI-03
+ * 
  * Interface for User Dao Operations
  *
  */

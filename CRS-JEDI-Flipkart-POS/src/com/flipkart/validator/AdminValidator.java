@@ -10,7 +10,7 @@ import com.flipkart.bean.Student;
 
 /**
  * 
- * @author JEDI-03
+ * 
  * Class for Admin Validator 
  * 
  */
@@ -52,9 +52,9 @@ public class AdminValidator {
 	 * @param studentList
 	 * @return if studentId is still unapproved
 	 */
-	public static boolean isValidUnapprovedStudent(int studentId, List<Student> studentList) {
+	public static boolean isValidUnapprovedStudent(String studentId, List<Student> studentList) {
 		for(Student student : studentList) {
-			if(studentId == student.getStudentId()) {
+			if(studentId.equals(student.getStudentId())) {
 				return true;
 			}
 		}

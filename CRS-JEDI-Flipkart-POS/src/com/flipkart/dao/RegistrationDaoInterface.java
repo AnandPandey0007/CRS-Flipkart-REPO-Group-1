@@ -13,7 +13,7 @@ import com.flipkart.constant.ModeOfPayment;
 import com.flipkart.exception.CourseNotFoundException;
 
 /**
- * @author JEDI-03
+ *
  * Interface for Registration DAO Operation
  *
  */
@@ -26,24 +26,23 @@ public interface RegistrationDaoInterface {
 	 * @return boolean indicating if the course is added successfully
 	 * @throws SQLException 
 	 */
-	public boolean addCourse(String courseCode, int studentId) throws SQLException;
+	public boolean addCourse(String courseCode, String studentId) throws SQLException;
 	
 	/**
 	 * Drop Course selected by student
 	 * @param courseCode
 	 * @param studentId
 	 * @return boolean indicating if the course is dropped successfully
-	 * @throws CourseNotFoundException 
 	 * @throws SQLException 
 	 */
-	public boolean dropCourse(String courseCode, int studentId) throws SQLException;
+	public boolean dropCourse(String courseCode, String studentId) throws SQLException;
 	/**
 	 * Method to get the list of courses available from course catalog 
 	 * @param studentId
 	 * @return list of Courses
 	 * @throws SQLException 
 	 */
-	public List<Course> viewCourses(int studentId) throws SQLException;
+	public List<Course> viewCourses(String studentId) throws SQLException;
 	
 	/**
 	 * Method to View list of Registered Courses
@@ -51,7 +50,7 @@ public interface RegistrationDaoInterface {
 	 * @return list of Registered Courses
 	 * @throws SQLException 
 	 */
-	public List<Course> viewRegisteredCourses(int studentId) throws SQLException;
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException;
 	
 	/**
 	 * Method to view grade card of the student
@@ -59,7 +58,7 @@ public interface RegistrationDaoInterface {
 	 * @return Grade Card
 	 * @throws SQLException 
 	 */
-	public List<StudentGrade> viewGradeCard(int studentId) throws SQLException;
+	public List<StudentGrade> viewGradeCard(String studentId) throws SQLException;
 	
 	/**
 	 * Method to retrieve fee for the selected courses from the database and calculate total fee
@@ -67,7 +66,7 @@ public interface RegistrationDaoInterface {
 	 * @return Fee Student has to pay
 	 * @throws SQLException 
 	 */
-	public double calculateFee(int studentId) throws SQLException;
+	public double calculateFee(String studentId) throws SQLException;
 	
 	/**
 	 * Check if seat is available for that particular course
@@ -84,7 +83,7 @@ public interface RegistrationDaoInterface {
 	 * @return Number of registered Courses
 	 * @throws SQLException 
 	 */
-	public int numOfRegisteredCourses(int studentId) throws SQLException;
+	public int numOfRegisteredCourses(String studentId) throws SQLException;
 	
 	/**
 	 * Method checks if the student is registered for that course
@@ -93,7 +92,7 @@ public interface RegistrationDaoInterface {
 	 * @return Students registration status
 	 * @throws SQLException 
 	 */
-	public boolean isRegistered(String courseCode, int studentId) throws SQLException;
+	public boolean isRegistered(String courseCode, String studentId) throws SQLException;
 	
 	/**
 	 *  Method to get student registration status
@@ -101,14 +100,14 @@ public interface RegistrationDaoInterface {
 	 * @return Student's registration status
 	 * @throws SQLException
 	 */
-	public boolean getRegistrationStatus(int studentId) throws SQLException;
+	public boolean getRegistrationStatus(String studentId) throws SQLException;
 	
 	/**
 	 *  Method to set student registration status
 	 * @param studentId
 	 * @throws SQLException
 	 */
-	public void setRegistrationStatus(int studentId) throws SQLException;
+	public void setRegistrationStatus(String studentId) throws SQLException;
 	
 	
 }

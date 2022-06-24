@@ -8,7 +8,7 @@ import com.flipkart.constant.NotificationType;
 
 /**
  * 
- * @author JEDI-03
+ *
  * Interface for Notification Dao Operations
  * Used for adding the notification to the database
  *
@@ -24,5 +24,5 @@ public interface NotificationDaoInterface {
 	 * @return notification id for the record added in the database
 	 * @throws SQLException
 	 */
-	public int sendNotification(NotificationType type,int studentId,ModeOfPayment modeOfPayment,double amount) throws SQLException;
+	public int sendNotification(NotificationType type,String studentId,ModeOfPayment modeOfPayment,double amount) throws SQLException;
 }

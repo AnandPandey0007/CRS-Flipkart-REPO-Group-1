@@ -2,14 +2,14 @@ package com.flipkart.bean;
 
 /**
  * 
- * @author JEDI-03
+ *
  * Class for storing details of course Student has taken
  * 
  */
 public class EnrolledStudent {
 	private String courseCode;
 	private String courseName;
-	private int studentId;
+	private String studentId;
 	
 	/**
 	 * Method to get Course Code
@@ -47,7 +47,7 @@ public class EnrolledStudent {
 	 * Method to get Student Id of student enrolled in the course
 	 * @return Student Id: student id
 	 */
-	public int getStudentId() {
+	public String getStudentId() {
 		return studentId;
 	}
 	
@@ -55,7 +55,7 @@ public class EnrolledStudent {
 	 * Method to set Student Id of student enrolled in the course
 	 * @param studentId
 	 */
-	public void setStudentId(int studentId) {
+	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
 	
@@ -65,7 +65,7 @@ public class EnrolledStudent {
 	 * @param courseName
 	 * @param studentId
 	 */
-	public EnrolledStudent(String courseCode, String courseName, int studentId) {
+	public EnrolledStudent(String courseCode, String courseName, String studentId) {
 		super();
 		this.courseCode = courseCode;
 		this.courseName = courseName;

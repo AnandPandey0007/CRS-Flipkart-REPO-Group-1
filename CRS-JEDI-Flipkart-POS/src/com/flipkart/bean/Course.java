@@ -2,7 +2,7 @@ package com.flipkart.bean;
 
 /**
  * 
- * @author JEDI-03
+ *
  * Class to store Course information
  * 
  */

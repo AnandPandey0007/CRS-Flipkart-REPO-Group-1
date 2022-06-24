@@ -6,7 +6,7 @@ import java.util.List;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
-import com.flipkart.exception.CourseFoundException;
+import com.flipkart.exception.CourseAlreadyExistsException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.ProfessorNotAddedException;
@@ -16,7 +16,7 @@ import com.flipkart.exception.UserNotFoundException;
 
 /**
  * 
- * @author JEDI-03
+ *
  * Interface for Admin Operations
  * 
  */
@@ -37,7 +37,7 @@ public interface AdminInterface {
 	 * @param course : Course object storing details of a course
 	 * @param courseList : Courses available in the catalog
 	 */
-	public void addCourse(Course course, List<Course> courseList) throws CourseFoundException;
+	public void addCourse(Course course, List<Course> courseList) throws CourseAlreadyExistsException;
 	
 	/**
 	 * Method to view Students yet to be approved by Admin
@@ -49,10 +49,9 @@ public interface AdminInterface {
 	 * Method to approve a Student 
 	 * @param studentId
 	 * @param studentList
-	 * @throws StudentNotFoundException 
 	 * @throws StudentNotFoundForApprovalException 
 	 */
-	public void approveStudent(int studentId, List<Student> studentList) throws StudentNotFoundForApprovalException;
+	public void approveStudent(String studentId, List<Student> studentList) throws StudentNotFoundForApprovalException;
 	
 	/**
 	 * Method to add Professor to DB

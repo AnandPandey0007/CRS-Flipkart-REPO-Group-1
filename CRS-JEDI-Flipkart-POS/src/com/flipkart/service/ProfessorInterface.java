@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 
- * @author JEDI-03
+ * 
  * Interface for Professor Operations
  * 
  */
@@ -23,7 +23,7 @@ public interface ProfessorInterface {
 	 * @return boolean indicating if grade is added or not
 	 * @throws GradeNotAddedException
 	 */
-	public boolean addGrade(int studentId,String courseCode,String grade) throws GradeNotAddedException;
+	public boolean addGrade(String studentId,String courseCode,String grade) throws GradeNotAddedException;
 	
 	/**
 	 * Method to view all the enrolled students

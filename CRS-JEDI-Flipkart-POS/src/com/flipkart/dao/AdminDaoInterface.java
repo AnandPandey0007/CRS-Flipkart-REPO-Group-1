@@ -9,7 +9,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.User;
-import com.flipkart.exception.CourseFoundException;
+import com.flipkart.exception.CourseAlreadyExistsException;
 import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.ProfessorNotAddedException;
@@ -20,7 +20,7 @@ import com.flipkart.exception.UserNotFoundException;
 
 
 /**
- * @author JEDI-03
+ *
  * Interface for Admin Dao Operations
  *
  */
@@ -37,9 +37,9 @@ public interface AdminDaoInterface {
 	/**
 	 * Add Course using SQL commands
 	 * @param course
-	 * @throws CourseFoundException
+	 * @throws CourseAlreadyExistsException
 	 */
-	public void addCourse(Course course) throws CourseFoundException;
+	public void addCourse(Course course) throws CourseAlreadyExistsException;
 	/**
 	 * Fetch Students yet to approved using SQL commands
 	 * @return List of Students yet to approved
@@ -49,16 +49,15 @@ public interface AdminDaoInterface {
 	/**
 	 * Approve Student using SQL commands
 	 * @param studentId
-	 * @throws StudentNotFoundException
+	 * @throws StudentNotFoundForApprovalException
 	 */
-	public void approveStudent(int studentId) throws StudentNotFoundForApprovalException;
+	public void approveStudent(String studentId) throws StudentNotFoundForApprovalException;
 	
 	/**
 	 * Add professor using SQL commands
 	 * @param professor
 	 * @throws ProfessorNotAddedException
-	 * @throws UserIdAlreadyInUseException 
-	 * @throws UserNotAddedException 
+	 * @throws UserIdAlreadyInUseException
 	 */
 	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException;
 	
@@ -81,7 +80,7 @@ public interface AdminDaoInterface {
 	
 	/**
 	 * View courses in the catalog
-	 * @param Catalog ID
+	 * @param catalogId
 	 * @return List of courses in the catalog
 	 */
 	public List<Course> viewCourses(int catalogId);

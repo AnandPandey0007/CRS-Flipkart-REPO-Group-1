@@ -3,7 +3,7 @@ package com.flipkart.exception;
 
 /**
  * Exception to check if course is available in catalog
- * @author JEDI-03
+ *
  *
  */
 public class CourseNotFoundException extends Exception{

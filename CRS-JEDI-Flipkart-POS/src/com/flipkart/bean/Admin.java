@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 
- * @author JEDI-03
+ *
  * Admin Class
  * 
  */

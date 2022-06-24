@@ -9,7 +9,7 @@ import com.flipkart.exception.SeatNotAvailableException;
 
 /**
  * 
- * @author JEDI-03
+ *
  * Class for Student Validator 
  * 
  */
@@ -23,7 +23,7 @@ public class StudentValidator {
 	 * @return Student Registration Status
 	 * @throws CourseNotFoundException
 	 */
-	public static boolean isRegistered(String courseCode,int studentId,List<Course>registeredCourseList) throws CourseNotFoundException
+	public static boolean isRegistered(String courseCode,String studentId,List<Course>registeredCourseList) throws CourseNotFoundException
 	{
 		for(Course course : registeredCourseList)
 		{

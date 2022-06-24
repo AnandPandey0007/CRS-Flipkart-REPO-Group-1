@@ -9,14 +9,12 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.EnrolledStudent;
-import com.flipkart.bean.Student;
 import com.flipkart.constant.SQLQueriesConstants;
-import com.flipkart.service.StudentOperation;
 import com.flipkart.utils.DBUtils;
 
 /**
  * 
- * @author JEDI-03
+ *
  * Class to implement Professor Dao Operations
  *
  */
@@ -35,12 +33,10 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 	
 	/**
 	 * Method to make ProfessorDaoOperation Singleton
-	 * @return
+	 *
 	 */
-	public static ProfessorDaoOperation getInstance()
-	{
-		if(instance==null)
-		{
+	public static ProfessorDaoOperation getInstance() {
+		if(instance==null) {
 			// This is a synchronized block, when multiple threads will access this instance
 			synchronized(ProfessorDaoOperation.class){
 				instance=new ProfessorDaoOperation();
@@ -52,7 +48,7 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 	
 	/**
 	 * Method to get Courses by Professor Id using SQL Commands
-	 * @param userId, prof id of the professor
+	 * @param  profId id of the professor
 	 * @return get the courses offered by the professor.
 	 */
 	@Override
@@ -65,13 +61,11 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 			statement.setString(1, profId);
 			
 			ResultSet results=statement.executeQuery();
-			while(results.next())
-			{
+			while(results.next()) {
 				courseList.add(new Course(results.getString("courseCode"),results.getString("courseName"),results.getString("professorId"),results.getInt("seats")));
 			}
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		finally
@@ -89,9 +83,8 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 
 	/**
 	 * Method to view list of enrolled Students using SQL Commands
-	 * @param: profId: professor id 
-	 * @param: courseCode: course code of the professor
-	 * @return: return the enrolled students for the corresponding professor and course code.
+	 * @param profId professor id
+	 * @return return the enrolled students for the corresponding professor and course code.
 	 */
 	@Override
 	public List<EnrolledStudent> getEnrolledStudents(String profId) {
@@ -102,18 +95,15 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 			statement.setString(1, profId);
 			
 			ResultSet results = statement.executeQuery();
-			while(results.next())
-			{
+			while(results.next()) {
 				//public EnrolledStudent(String courseCode, String courseName, int studentId) 
-				enrolledStudents.add(new EnrolledStudent(results.getString("courseCode"),results.getString("courseName"),results.getInt("studentId")));
+				enrolledStudents.add(new EnrolledStudent(results.getString("courseCode"),results.getString("courseName"),results.getString("studentId")));
 			}
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		finally
-		{
+		finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -126,18 +116,17 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 	
 	/**
 	 * Method to Grade a student using SQL Commands
-	 * @param: profId: professor id 
-	 * @param: courseCode: course code for the corresponding 
-	 * @return: returns the status after adding the grade
+	 * @param courseCode course code for the corresponding
+	 * @return returns the status after adding the grade
 	 */
-	public Boolean addGrade(int studentId,String courseCode,String grade) {
+	public Boolean addGrade(String studentId,String courseCode,String grade) {
 		Connection connection=DBUtils.getConnection();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstants.ADD_GRADE);
 			
 			statement.setString(1, grade);
 			statement.setString(2, courseCode);
-			statement.setInt(3, studentId);
+			statement.setString(3, studentId);
 			
 			int row = statement.executeUpdate();
 			
@@ -146,12 +135,10 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 			else
 				return false;
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		finally
-		{
+		finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -169,12 +156,10 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 	 * @return Professor Id in string
 	 */
 	@Override
-	public String getProfessorById(String profId)
-	{
+	public String getProfessorById(String profId) {
 		String prof_Name = null;
 		Connection connection=DBUtils.getConnection();
-		try 
-		{
+		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstants.GET_PROF_NAME);
 			
 			statement.setString(1, profId);
@@ -184,17 +169,13 @@ public class ProfessorDaoOperation implements ProfessorDaoInterface {
 			prof_Name = rs.getString(1);
 			
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		finally
-		{
-			try 
-			{
+		finally {
+			try {
 				connection.close();
-			} catch (SQLException e) 
-			{
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}

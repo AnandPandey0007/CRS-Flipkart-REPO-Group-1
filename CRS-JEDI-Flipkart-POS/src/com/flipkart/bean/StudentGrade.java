@@ -7,7 +7,7 @@ import com.flipkart.constant.Grade;
 
 /**
  * 
- * @author JEDI-03
+ *
  * Class to store Student Grade information
  * 
  */

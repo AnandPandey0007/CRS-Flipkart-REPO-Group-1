@@ -11,7 +11,7 @@ import com.flipkart.utils.DBUtils;
 
 /**
  * 
- * @author JEDI-03
+ * 
  * Class to implement User Dao Operations
  */
 public class UserDaoOperation implements UserDaoInterface{
@@ -50,10 +50,8 @@ public class UserDaoOperation implements UserDaoInterface{
 		Connection connection=DBUtils.getConnection();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstants.UPDATE_PASSWORD);
-			
 			statement.setString(1, newPassword);
 			statement.setString(2, userId);
-			
 			int row = statement.executeUpdate();
 			
 			if(row==1)
@@ -93,31 +91,18 @@ public class UserDaoOperation implements UserDaoInterface{
 			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueriesConstants.VERIFY_CREDENTIALS);
 			preparedStatement.setString(1,userId);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			
 			if(!resultSet.next())
 				throw new UserNotFoundException(userId);
-			else if(password.equals(resultSet.getString("password")))
-			{
+			else if(password.equals(resultSet.getString("password"))) {
 				return true;
 			}
-			else
-			{
+			else {
 				return false;
 			}
 			
 		}
-		catch(SQLException ex)
-		{
+		catch(SQLException ex) {
 			System.out.println("Something went wrong, please try again! "+ ex.getMessage());
-		}
-		finally
-		{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		return false;
 	}
@@ -148,6 +133,7 @@ public class UserDaoOperation implements UserDaoInterface{
 			
 			if(rs.next())
 			{
+				System.out.println();
 				return rs.getString("role");
 			}
 				
