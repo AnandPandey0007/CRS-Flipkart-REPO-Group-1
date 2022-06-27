@@ -44,10 +44,10 @@ public class SQLQueriesConstants {
 	public static final String INSERT_NOTIFICATION = "insert into notification(studentId,type,referenceId) values(?,?,?);";
 	public static final String GET_NOTIFICATION = "select * from notification where referenceId = ?;";
 	public static final String ADD_GRADE="update registeredcourses set Grade=? where courseCode=? and studentId=?";
-	public static final String GET_COURSES="select * from course where professorId=?";
+	public static final String GET_COURSES="select * from coursecatalog where professorId=?";
 	public static final String GET_REGISTRATION_STATUS=" select isapproved from student where studentId = ? ";
 	public static final String SET_REGISTRATION_STATUS="update student set isapproved=true  where studentId=?";
-	public static final String GET_ENROLLED_STUDENTS="select coursecatalog.courseId,course.courseName,registeredcourses.studentId from course inner join registeredcourses on course.courseCode = registeredcourses.courseId where course.professorId = ? order by course.courseCode";
+	public static final String GET_ENROLLED_STUDENTS="select coursecatalog.courseId, coursecatalog.courseName,registeredcourses.studentId from coursecatalog inner join registeredcourses on coursecatalog.courseId = registeredcourses.courseId where coursecatalog.professorId = ? order by coursecatalog.courseId";
 	public static final String NUMBER_OF_REGISTERED_COURSES=" select studentId from registeredcourses where studentId = ? ";
 	public static final String IS_REGISTERED=" select courseId from registeredcourses where courseid=? and studentId=? ";
 }

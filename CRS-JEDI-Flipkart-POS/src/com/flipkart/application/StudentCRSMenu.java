@@ -209,10 +209,8 @@ public class StudentCRSMenu {
 	 * Drop Course
 	 * @param studentId
 	 */
-	private void dropCourse(String studentId)
-	{
-		if(is_registered)
-		{
+	private void dropCourse(String studentId) {
+		if(is_registered) {
 			List<Course> registeredCourseList=viewRegisteredCourse(studentId);
 			
 			if(registeredCourseList==null)
@@ -221,24 +219,18 @@ public class StudentCRSMenu {
 			System.out.println("Enter the Course Code : ");
 			String courseCode = sc.next();
 			
-			try
-			{
+			try {
 				registrationInterface.dropCourse(courseCode, studentId,registeredCourseList);
 				System.out.println("You have successfully dropped Course : " + courseCode);
-				
 			}
-			catch(CourseNotFoundException e)
-			{
+			catch(CourseNotFoundException e) {
 				System.out.println("You have not registered for course : " + e.getCourseCode());
 			} 
-			catch (SQLException e) 
-			{
+			catch (SQLException e) {
 
                 System.out.println(e.getMessage());
 			}
-		}
-		else
-		{
+		} else {
 			System.out.println("Please complete registration");
 		}
 
@@ -249,8 +241,7 @@ public class StudentCRSMenu {
 	 * @param studentId
 	 * @return List of available Courses 
 	 */
-	private List<Course> viewCourse(String studentId)
-	{
+	private List<Course> viewCourse(String studentId) {
 		List<Course> course_available=null;
 		try {
 			course_available = registrationInterface.viewCourses(studentId);
@@ -265,8 +256,7 @@ public class StudentCRSMenu {
 		}
 
 		System.out.println(String.format("%-20s %-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR", "SEATS"));
-		for(Course obj : course_available)
-		{
+		for(Course obj : course_available) {
 			System.out.println(String.format("%-20s %-20s %-20s %-20s",obj.getCourseCode(), obj.getCourseName(),obj.getInstructorId(), obj.getSeats()));
 		}
 		
@@ -279,8 +269,7 @@ public class StudentCRSMenu {
 	 * @param studentId
 	 * @return List of Registered Courses
 	 */
-	private List<Course> viewRegisteredCourse(String studentId)
-	{
+	private List<Course> viewRegisteredCourse(String studentId) {
 		List<Course> course_registered=null;
 		try {
 			course_registered = registrationInterface.viewRegisteredCourses(studentId);
@@ -290,8 +279,7 @@ public class StudentCRSMenu {
             System.out.println(e.getMessage());
 		}
 		
-		if(course_registered.isEmpty())
-		{
+		if(course_registered.isEmpty()) {
 			System.out.println("You haven't registered for any course");
 			return null;
 		}
@@ -309,31 +297,26 @@ public class StudentCRSMenu {
 	 * View grade card for particular student  
 	 * @param studentId
 	 */
-	private void viewGradeCard(String studentId)
-	{
+	private void viewGradeCard(String studentId) {
 		
 		
 		List<StudentGrade> grade_card=null;
-		try 
-		{
+		try {
 			grade_card = registrationInterface.viewGradeCard(studentId);
 		} 
-		catch (SQLException e) 
-		{
+		catch (SQLException e) {
 
             System.out.println(e.getMessage());
 		}
 		
 		System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
 		
-		if(grade_card.isEmpty())
-		{
+		if(grade_card.isEmpty()) {
 			System.out.println("You haven't registered for any course");
 			return;
 		}
 		
-		for(StudentGrade obj : grade_card)
-		{
+		for(StudentGrade obj : grade_card) {
 			System.out.println(String.format("%-20s %-20s %-20s",obj.getCourseCode(), obj.getCourseName(),obj.getGrade()));
 		}
 	}
@@ -342,8 +325,7 @@ public class StudentCRSMenu {
 	 * Make Payment for selected courses. Student is provided with an option to pay the fees and select the mode of payment.
 	 * @param studentId
 	 */
-	private void make_payment(String studentId)
-	{
+	private void make_payment(String studentId) {
 		
 		double fee =0.0;
 		try {
@@ -356,20 +338,16 @@ public class StudentCRSMenu {
 
 		if(fee == 0.0) {
 			System.out.println("You have not  registered for any courses yet");
-		}
-		else
-		{
+		} else {
 			
 			System.out.println("Your total fee  = " + fee);
 			System.out.println("Want to continue Fee Payment(y/n)");
 			String ch = sc.next();
-			if(ch.equals("y"))
-			{
+			if(ch.equals("y")) {
 				System.out.println("Select Mode of Payment:");
 				
 				int index = 1;
-				for(ModeOfPayment mode : ModeOfPayment.values())
-				{
+				for(ModeOfPayment mode : ModeOfPayment.values()) {
 					System.out.println(index + " " + mode);
 					index = index + 1;
 				}
@@ -383,8 +361,7 @@ public class StudentCRSMenu {
 					try {
 						notificationInterface.sendNotification(NotificationType.PAYMENT, studentId, mode, fee);
 					}
-					catch (Exception e) 
-					{
+					catch (Exception e) {
 
 			            System.out.println(e.getMessage());
 					}

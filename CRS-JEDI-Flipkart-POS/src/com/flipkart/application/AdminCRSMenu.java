@@ -1,11 +1,11 @@
 package com.flipkart.application;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Scanner;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
-import com.flipkart.constant.Gender;
 import com.flipkart.constant.NotificationType;
 import com.flipkart.constant.Role;
 import com.flipkart.exception.CourseAlreadyExistsException;
@@ -19,6 +19,7 @@ import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminInterfaceImpl;
 import com.flipkart.service.NotificationInterface;
 import com.flipkart.service.NotificationInterfaceImpl;
+import com.flipkart.utils.DBUtils;
 
 /**
  * 
@@ -171,7 +172,7 @@ public class AdminCRSMenu {
 	 * @return List of Students whose admissions are pending
 	 */
 	private List<Student> viewPendingAdmissions() {
-		
+		Connection connection= DBUtils.getConnection();
 		List<Student> pendingStudentsList= adminOperation.viewPendingAdmissions();
 		if(pendingStudentsList.size() == 0) {
 			return pendingStudentsList;

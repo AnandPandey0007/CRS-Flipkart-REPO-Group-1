@@ -94,8 +94,7 @@ public class ProfessorInterfaceImpl implements ProfessorInterface {
 		//call the DAO class
 		//get the courses for the professor
 		List<Course> coursesOffered=new ArrayList<Course>();
-		try
-		{
+		try {
 			coursesOffered=professorDAOInterface.getCoursesByProfessor(profId);
 		}
 		catch(Exception ex)
